@@ -8,4 +8,11 @@ Mission of the module:  If the user gives you two arrays of geo location, match 
 
 
 ## How to Run
+To run this program, you will want to use this command in the terminal:
+
+`python main.py`
+
+This will prompt you to first enter the number of coordinates in array 1, followed by entering the latitudes and longitudes of each location. You will then repeat this for array 2. An example of this is shown below.
+
+<img width="697" alt="Screenshot 2025-01-22 at 4 30 23 PM" src="https://github.com/user-attachments/assets/264e42e2-5cea-4228-946e-13741e858593" />
 
