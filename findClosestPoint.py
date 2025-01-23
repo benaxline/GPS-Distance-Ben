@@ -1,4 +1,4 @@
-import distanceBetween
+from distanceBetween import distanceBetween
 
 def findClosestPoints(array1, array2):
     closest_points = []
