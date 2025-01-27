@@ -3,8 +3,8 @@ import csv
 
 
 def readCSVFile(filePath):
-    possibleLatKeys = ['latitude', 'lat']
-    possibleLonKeys = ['longitude', 'lng']
+    possibleLatKeys = ['latitude', 'lat', 'Latitude']
+    possibleLonKeys = ['longitude', 'lng', 'Longitude']
     output = []
     with open(filePath, 'r', encoding='utf-8', newline='') as f:
         reader = csv.DictReader(f)
