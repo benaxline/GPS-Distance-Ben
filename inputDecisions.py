@@ -3,12 +3,34 @@ import csv
 
 
 def readCSVFile(filePath):
+    possibleLatKeys = ['latitude', 'lat']
+    possibleLonKeys = ['longitude', 'lng']
     output = []
     with open(filePath, 'r', encoding='utf-8', newline='') as f:
         reader = csv.DictReader(f)
+        fieldNames = [fn.lower() for fn in reader.fieldnames] if reader.fieldnames else []
+
+        latCol, lonCol = None, None
+
+        for latCandidate in possibleLatKeys:
+            if latCandidate in fieldNames:
+                latCol = latCandidate
+                break
+        for lonCandidate in possibleLonKeys:
+            if lonCandidate in fieldNames:
+                lonCol = lonCandidate
+                break
+
+        if not latCol or not lonCol:
+            raise ValueError(
+                f'Could not find latitude/longitude columns in {filePath}'
+                f'Looking for these latitude names: {possibleLatKeys} \n '
+                f'and these longitude names: {possibleLonKeys} \n'
+            )
+
         for row in reader:
-            latitude = row.get("latitude", "").strip()
-            longitude = row.get("longitude", "").strip()
+            latitude = row.get(latCol, "").strip()
+            longitude = row.get(lonCol, "").strip()
 
             if not latitude or not longitude:
                 print(f'Skipping row (latitude or longitude empty) {row}...')
