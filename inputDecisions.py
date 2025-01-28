@@ -9,7 +9,10 @@ def readCSVFile(filePath):
     output = []
     with open(filePath, 'r', encoding='utf-8', newline='') as f:
         reader = csv.DictReader(f)
-        fieldNames = [fn.lower() for fn in reader.fieldnames] if reader.fieldnames else []
+        if reader.fieldnames:
+            fieldNames = [fn.lower() for fn in reader.fieldnames]
+        else:
+            fieldNames = []
 
         latCol, lonCol = None, None
 
