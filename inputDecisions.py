@@ -1,4 +1,5 @@
 from distanceBetween import readLatLonFromCSV
+from handleLatLon import parse_value
 import csv
 
 
@@ -29,8 +30,11 @@ def readCSVFile(filePath):
             )
 
         for row in reader:
-            latitude = row.get(latCol, "").strip()
-            longitude = row.get(lonCol, "").strip()
+            latitude = row.get(latCol, "")
+            longitude = row.get(lonCol, "")
+
+            latitude = parse_value(latitude)
+            longitude = parse_value(longitude)
 
             if not latitude or not longitude:
                 print(f'Skipping row (latitude or longitude empty) {row}...')
