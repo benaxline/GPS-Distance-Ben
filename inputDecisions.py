@@ -1,6 +1,7 @@
 from distanceBetween import readLatLonFromCSV
 from handleLatLon import parse_value
 import csv
+import logging
 
 
 def readCSVFile(filePath):
@@ -26,6 +27,7 @@ def readCSVFile(filePath):
                 break
 
         if not latCol or not lonCol:
+            logging.warning('Value error!')
             raise ValueError(
                 f'Could not find latitude/longitude columns in {filePath}'
                 f'Looking for these latitude names: {possibleLatKeys} \n '
@@ -40,14 +42,14 @@ def readCSVFile(filePath):
             longitude = parse_value(longitude)
 
             if not latitude or not longitude:
-                print(f'Skipping row (latitude or longitude empty) {row}...')
+                logging.warning(f'Skipping row (latitude or longitude empty) {row}...')
                 continue
 
             try:
                 lat = float(latitude)
                 lon = float(longitude)
             except ValueError:
-                print(f'Skipping row (invalid conversion): {row}...')
+                logging.warning(f'Skipping row (invalid conversion): {row}...')
                 continue
 
             output.append({

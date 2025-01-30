@@ -1,11 +1,14 @@
 from findClosestPoint import findClosestPoints
 from inputDecisions import chooseArrayData
+import logging
 
 
 def main():
     print('Configuring arrays...')
     array1 = chooseArrayData("arr1")
     array2 = chooseArrayData("arr2")
+    logging.info(f'array1: {array1}')
+    logging.info(f'array2 {array2}')
 
     results = findClosestPoints(array1, array2)
     print('\nClosest Point:\n')
